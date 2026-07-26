@@ -6,7 +6,7 @@
 <title>FreeCoinWorld — Premium Free Social Casino Games</title>
 <meta name="description" content="FreeCoinWorld — The #1 free social casino. Play slots, roulette, poker & more. Claim your daily bonus coins. No real money. No deposits. Always free.">
 <meta property="og:title" content="FreeCoinWorld — Premium Free Social Casino">
-<meta property="og:description" content="Play 16+ premium casino games for free. Daily coins, referral bonuses, live support.">
+<meta property="og:description" content="Play 40 premium casino games for free. Daily coins, referral bonuses, live support.">
 <meta property="og:url" content="https://freecoinworld.xyz">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -256,22 +256,66 @@ header {
 .btn-lg { padding: 14px 32px; font-size: 0.92rem; border-radius: 10px; }
 .hero-note { font-size: 0.78rem; color: var(--text-faint); margin-top: 14px; }
 
-/* Hero visual — featured game mockup */
+/* Hero visual — featured game reel */
 .hero-visual {
-  display: flex; gap: 12px;
-  align-items: flex-end; justify-content: center;
+  overflow: hidden;
   position: relative;
+  min-width: 0;
+  padding: 20px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
 }
-.hero-card {
-  border-radius: 18px; overflow: hidden;
-  border: 1.5px solid rgba(255,255,255,0.07);
-  box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+.hero-reel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: max-content;
+  animation: heroReel 26s linear infinite;
+}
+.hero-visual:hover .hero-reel {
+  animation-duration: 10s;
+  animation-direction: alternate;
+}
+@keyframes heroReel {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 7px)); }
+}
+.hero-game {
+  width: clamp(118px, 11vw, 164px);
+  aspect-ratio: 1;
   flex: 0 0 auto;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 16px;
+  border: 1.5px solid rgba(255,255,255,0.07);
+  background: linear-gradient(160deg, #17171E 0%, #111116 100%);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
-.hero-card.main  { width: 200px; }
-.hero-card.side  { width: 145px; opacity: 0.75; }
-.hero-card:hover { transform: translateY(-6px); opacity: 1 !important; transition: transform 0.3s, opacity 0.3s; }
+.hero-game:hover {
+  transform: translateY(-8px) scale(1.05);
+  border-color: var(--gold-border-h);
+  box-shadow: 0 26px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(201,168,76,0.22);
+}
+.hero-game img {
+  width: 72%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.55));
+}
+.hero-game span {
+  max-width: 86%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-h);
+}
 
 /* ──────────────────────────────
    GAME THUMBNAIL ART (CSS)
@@ -441,6 +485,22 @@ header {
 }
 .card-thumb .gt { transition: transform 0.35s ease; }
 .game-card:hover .card-thumb .gt { transform: scale(1.04); }
+.card-logo-stage {
+  aspect-ratio: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background: var(--bg-card);
+  transition: transform 0.35s ease;
+}
+.game-card:hover .card-logo-stage { transform: scale(1.04); }
+.game-logo-crop {
+  width: min(190px, 86%);
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.65));
+}
 
 .thumb-overlay {
   position: absolute; inset: 0;
@@ -742,7 +802,7 @@ footer {
       <span class="outline">Casino</span> Platform
     </h1>
     <p class="hero-sub">
-      Play 16+ premium casino games with virtual coins. Collect daily bonuses,
+      Play 40 premium casino games with virtual coins. Collect daily bonuses,
       compete on leaderboards, and experience real casino thrills — completely free.
     </p>
 
@@ -752,7 +812,7 @@ footer {
         <div class="hero-stat-label">Active Players</div>
       </div>
       <div>
-        <div class="hero-stat-num">16+</div>
+        <div class="hero-stat-num">40</div>
         <div class="hero-stat-label">Premium Games</div>
       </div>
       <div>
@@ -769,26 +829,25 @@ footer {
   </div>
 
   <div class="hero-visual" aria-hidden="true">
-    <div class="hero-card side">
-      <div class="gt gt-dragon">
-        <div class="gt-symbol">🐉</div>
-        <div class="gt-name">Dragon Fortune</div>
-        <div class="gt-sub">Slots</div>
-      </div>
-    </div>
-    <div class="hero-card main">
-      <div class="gt gt-cash">
-        <div class="gt-symbol">💎</div>
-        <div class="gt-name">Cash Wheel Deluxe</div>
-        <div class="gt-sub">Featured</div>
-      </div>
-    </div>
-    <div class="hero-card side">
-      <div class="gt gt-roulette">
-        <div class="gt-symbol">◉</div>
-        <div class="gt-name">Roulette Royale</div>
-        <div class="gt-sub">Table</div>
-      </div>
+    <div class="hero-reel">
+      <div class="hero-game"><img src="assets/games/lucky-strike.png" alt=""><span>Lucky Strike</span></div>
+      <div class="hero-game"><img src="assets/games/ultra-panda.png" alt=""><span>Ultra Panda</span></div>
+      <div class="hero-game"><img src="assets/games/vblink.png" alt=""><span>Vblink</span></div>
+      <div class="hero-game"><img src="assets/games/river-sweeps.png" alt=""><span>River Sweeps</span></div>
+      <div class="hero-game"><img src="assets/games/orion-stars.png" alt=""><span>Orion Stars</span></div>
+      <div class="hero-game"><img src="assets/games/fire-kirin.png" alt=""><span>Fire Kirin</span></div>
+      <div class="hero-game"><img src="assets/games/blue-dragon.png" alt=""><span>Blue Dragon</span></div>
+      <div class="hero-game"><img src="assets/games/acebook.png" alt=""><span>Acebook</span></div>
+      <div class="hero-game"><img src="assets/games/cash-frenzy.png" alt=""><span>Cash Frenzy</span></div>
+      <div class="hero-game"><img src="assets/games/lucky-strike.png" alt=""><span>Lucky Strike</span></div>
+      <div class="hero-game"><img src="assets/games/ultra-panda.png" alt=""><span>Ultra Panda</span></div>
+      <div class="hero-game"><img src="assets/games/vblink.png" alt=""><span>Vblink</span></div>
+      <div class="hero-game"><img src="assets/games/river-sweeps.png" alt=""><span>River Sweeps</span></div>
+      <div class="hero-game"><img src="assets/games/orion-stars.png" alt=""><span>Orion Stars</span></div>
+      <div class="hero-game"><img src="assets/games/fire-kirin.png" alt=""><span>Fire Kirin</span></div>
+      <div class="hero-game"><img src="assets/games/blue-dragon.png" alt=""><span>Blue Dragon</span></div>
+      <div class="hero-game"><img src="assets/games/acebook.png" alt=""><span>Acebook</span></div>
+      <div class="hero-game"><img src="assets/games/cash-frenzy.png" alt=""><span>Cash Frenzy</span></div>
     </div>
   </div>
 </section>
@@ -879,7 +938,7 @@ footer {
   <div class="section-header">
     <div>
       <div class="section-heading">All <span>Games</span></div>
-      <div class="section-sub">16 premium free-to-play titles</div>
+      <div class="section-sub">40 premium free-to-play titles</div>
     </div>
     <a href="#notify" class="see-all">View All →</a>
   </div>
@@ -1286,7 +1345,7 @@ footer {
     </div>
     <div class="trust-cell" data-reveal>
       <div class="trust-icon ti-green">🎮</div>
-      <div class="trust-title">16+ Premium Games</div>
+      <div class="trust-title">40 Premium Games</div>
       <div class="trust-desc">From classic slots to fish games and table games — our library grows every month with new titles.</div>
     </div>
     <div class="trust-cell" data-reveal>
@@ -1326,7 +1385,7 @@ footer {
         <div class="logo-mark">🪙</div>
         <span class="logo-name">Free<span>Coin</span>World</span>
       </div>
-      <p class="footer-desc">The world's premier free social casino platform. Play 16+ premium games with virtual coins — no real money, no deposits, always free.</p>
+      <p class="footer-desc">The world's premier free social casino platform. Play 40 premium games with virtual coins — no real money, no deposits, always free.</p>
     </div>
 
     <div class="footer-col">
@@ -1409,6 +1468,70 @@ function handleSignup(e) {
   input.closest('.email-row').style.display = 'none';
   msg.style.display = 'block';
 }
+
+/* --- Screenshot game library --- */
+const games = [
+  { name: 'Lucky Strike', image: 'assets/games/lucky-strike.png', badge: 'Hot', badgeClass: 'badge-hot' },
+  { name: 'Ultra Panda', image: 'assets/games/ultra-panda.png', badge: 'Featured', badgeClass: 'badge-featured' },
+  { name: 'Vblink', image: 'assets/games/vblink.png', badge: 'Popular', badgeClass: 'badge-popular' },
+  { name: 'River Sweeps', image: 'assets/games/river-sweeps.png', badge: 'New', badgeClass: 'badge-new' },
+  { name: 'Orion Stars', image: 'assets/games/orion-stars.png', badge: 'VIP', badgeClass: 'badge-vip' },
+  { name: 'Fire Kirin', image: 'assets/games/fire-kirin.png', badge: 'Hot', badgeClass: 'badge-hot' },
+  { name: 'Panda Master', image: 'assets/games/panda-master.png', badge: 'Featured', badgeClass: 'badge-featured' },
+  { name: 'Vegas-X', image: 'assets/games/vegas-x.png', badge: 'Popular', badgeClass: 'badge-popular' },
+  { name: 'Milkyway', image: 'assets/games/milkyway.png', badge: 'New', badgeClass: 'badge-new' },
+  { name: 'Vegas Sweeps', image: 'assets/games/vegas-sweeps.png', badge: 'VIP', badgeClass: 'badge-vip' },
+  { name: 'Gameroom Online', image: 'assets/games/gameroom-online.png', badge: 'Hot', badgeClass: 'badge-hot' },
+  { name: 'Juwa', image: 'assets/games/juwa.png', badge: 'Featured', badgeClass: 'badge-featured' },
+  { name: 'Juwa 2.0', image: 'assets/games/juwa-2.png', badge: 'Popular', badgeClass: 'badge-popular' },
+  { name: 'Game Vault 999', image: 'assets/games/game-vault-999.png', badge: 'New', badgeClass: 'badge-new' },
+  { name: 'Golden Treasure', image: 'assets/games/golden-treasure.png', badge: 'VIP', badgeClass: 'badge-vip' },
+  { name: 'Blue Dragon', image: 'assets/games/blue-dragon.png', badge: 'New', badgeClass: 'badge-new' },
+  { name: 'HighStakes', image: 'assets/games/highstakes.png', badge: 'Hot', badgeClass: 'badge-hot' },
+  { name: 'Megaspin', image: 'assets/games/megaspin.png', badge: 'Popular', badgeClass: 'badge-popular' },
+  { name: 'River Monster', image: 'assets/games/river-monster.png', badge: 'Featured', badgeClass: 'badge-featured' },
+  { name: 'Casino Ignite', image: 'assets/games/casino-ignite.png', badge: 'VIP', badgeClass: 'badge-vip' },
+  { name: 'Mafia', image: 'assets/games/mafia.png', badge: 'Hot', badgeClass: 'badge-hot' },
+  { name: 'Noble', image: 'assets/games/noble.png', badge: 'Featured', badgeClass: 'badge-featured' },
+  { name: 'Winstar', image: 'assets/games/winstar.png', badge: 'Popular', badgeClass: 'badge-popular' },
+  { name: 'Lucky Stars', image: 'assets/games/lucky-stars.png', badge: 'New', badgeClass: 'badge-new' },
+  { name: 'Sirius', image: 'assets/games/sirius.png', badge: 'VIP', badgeClass: 'badge-vip' },
+  { name: 'Mr. All In One', image: 'assets/games/mr-all-in-one.png', badge: 'Hot', badgeClass: 'badge-hot' },
+  { name: 'Golden Dragon', image: 'assets/games/golden-dragon.png', badge: 'Featured', badgeClass: 'badge-featured' },
+  { name: 'King Of Pop', image: 'assets/games/king-of-pop.png', badge: 'Popular', badgeClass: 'badge-popular' },
+  { name: 'Vegas Roll', image: 'assets/games/vegas-roll.png', badge: 'New', badgeClass: 'badge-new' },
+  { name: 'Casino Royale', image: 'assets/games/casino-royale.png', badge: 'VIP', badgeClass: 'badge-vip' },
+  { name: 'Acebook', image: 'assets/games/acebook.png', badge: 'Hot', badgeClass: 'badge-hot' },
+  { name: 'High Roller', image: 'assets/games/high-roller.png', badge: 'Featured', badgeClass: 'badge-featured' },
+  { name: 'Yolo', image: 'assets/games/yolo.png', badge: 'Popular', badgeClass: 'badge-popular' },
+  { name: 'Egame', image: 'assets/games/egame.png', badge: 'New', badgeClass: 'badge-new' },
+  { name: 'Moolah', image: 'assets/games/moolah.png', badge: 'VIP', badgeClass: 'badge-vip' },
+  { name: 'Joker', image: 'assets/games/joker.png', badge: 'Hot', badgeClass: 'badge-hot' },
+  { name: 'Loot', image: 'assets/games/loot.png', badge: 'Featured', badgeClass: 'badge-featured' },
+  { name: 'Kraken', image: 'assets/games/kraken.png', badge: 'Popular', badgeClass: 'badge-popular' },
+  { name: 'Cash Frenzy', image: 'assets/games/cash-frenzy.png', badge: 'New', badgeClass: 'badge-new' },
+  { name: 'Cash Machine', image: 'assets/games/cash-machine.png', badge: 'VIP', badgeClass: 'badge-vip' }
+];
+
+document.querySelector('.games-grid').innerHTML = games.map(game => `
+  <div class="game-card" data-reveal>
+    <div class="card-thumb">
+      <div class="card-logo-stage">
+        <img class="game-logo-crop" src="${game.image}" alt="${game.name} logo" loading="lazy">
+      </div>
+      <span class="card-badge ${game.badgeClass}">${game.badge}</span>
+      <div class="thumb-overlay"><button class="play-btn">Play Free</button></div>
+    </div>
+    <div class="card-info">
+      <div class="card-game-name">${game.name}</div>
+      <div class="card-provider">FreeCoinWorld · Social Casino</div>
+      <div class="card-footer">
+        <span class="card-coins">Daily Bonus</span>
+        <span class="card-status online"></span>
+      </div>
+    </div>
+  </div>
+`).join('');
 
 /* --- Scroll reveal --- */
 const observer = new IntersectionObserver((entries) => {
